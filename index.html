@@ -1274,100 +1274,73 @@
 
       .flake { display: block; transform: scale(var(--size)); }
 
-      .cake-flake {
-        position: relative;
-        width: 58px;
-        height: 24px;
-        border-radius: 50%;
-        background:
-          radial-gradient(circle at 30% 45%, rgba(120, 70, 30, 0.18) 0 2px, transparent 3px),
-          radial-gradient(ellipse at 38% 35%, #ffe3b5, #f0b15c 58%, #d4843c);
-        box-shadow:
-          0 9px 0 #a15a28,
-          0 12px 14px rgba(90, 40, 10, 0.12);
-      }
-
-      .cake-flake.buttered::after {
-        content: "";
-        position: absolute;
-        width: 16px;
-        height: 10px;
-        left: 20px;
-        top: -4px;
-        border-radius: 3px;
-        background: linear-gradient(#fff6d4, #f0d56a);
-        transform: rotate(-8deg);
-      }
-
-      .cloud-flake {
-        position: relative;
-        width: 74px;
-        height: 24px;
-        border-radius: 20px;
-        background: #fffdf8;
-        opacity: 0.55;
-        filter: drop-shadow(0 8px 10px rgba(140, 120, 100, 0.12));
-      }
-
-      .cloud-flake::before,
-      .cloud-flake::after {
-        content: "";
-        position: absolute;
-        background: #fffdf8;
-        border-radius: 50%;
-      }
-
-      .cloud-flake::before {
-        width: 28px;
-        height: 28px;
-        left: 12px;
-        top: -14px;
-      }
-
-      .cloud-flake::after {
-        width: 38px;
-        height: 38px;
-        right: 10px;
-        top: -22px;
-      }
-
-      .stack-flake {
+      .ricotta-flake {
         position: relative;
         width: 64px;
-        height: 46px;
+        height: 26px;
+        border-radius: 50%;
+        background:
+          radial-gradient(circle at 30% 44%, rgba(196, 160, 64, 0.7) 0 1.6px, transparent 2.4px),
+          radial-gradient(circle at 58% 40%, rgba(196, 160, 64, 0.55) 0 1.4px, transparent 2.2px),
+          radial-gradient(circle at 46% 62%, rgba(255, 255, 255, 0.7) 0 5px, transparent 6px),
+          radial-gradient(ellipse at 40% 34%, #fff9f0, #f4e4c8 58%, #e6d2ae);
+        box-shadow:
+          0 8px 0 #c9b08a,
+          0 12px 14px rgba(120, 90, 40, 0.12);
       }
 
-      .stack-flake i,
-      .stack-flake b {
+      .salt-flake {
+        width: 8px;
+        height: 8px;
+        margin: 20px;
+        border-radius: 2px;
+        background: #fff;
+        box-shadow:
+          0 0 0 1px rgba(140, 118, 86, 0.5),
+          18px 4px 0 #fff,
+          18px 4px 0 1px rgba(140, 118, 86, 0.4),
+          -16px 12px 0 #f7f4ee,
+          -16px 12px 0 1px rgba(140, 118, 86, 0.35),
+          8px 22px 0 #fff,
+          26px 18px 0 #f3efe6,
+          -4px -14px 0 #fff,
+          28px -6px 0 #fff,
+          -20px -2px 0 #fff;
+        transform: scale(var(--size)) rotate(18deg);
+      }
+
+      .cream-flake {
+        position: relative;
+        width: 52px;
+        height: 22px;
+        border-radius: 16px;
+        background: #fff;
+        box-shadow:
+          -16px 5px 0 -3px #fff,
+          18px 3px 0 -5px #fff,
+          0 10px 14px rgba(150, 130, 100, 0.16);
+      }
+
+      .cream-flake::before,
+      .cream-flake::after {
+        content: "";
         position: absolute;
+        background: #fff;
         border-radius: 50%;
       }
 
-      .stack-flake i {
-        width: 62px;
-        height: 20px;
-        left: 0;
-        bottom: 0;
-        background: linear-gradient(#e7b56a, #b86a34 40%, #8d4e24);
+      .cream-flake::before {
+        width: 22px;
+        height: 22px;
+        left: 6px;
+        top: -12px;
       }
 
-      .stack-flake b {
-        width: 54px;
-        height: 18px;
-        left: 4px;
-        bottom: 12px;
-        background: radial-gradient(ellipse at 40% 38%, #ffe3b5, #e8a85a 70%);
-      }
-
-      .stack-flake .puff {
-        position: absolute;
-        width: 36px;
-        height: 14px;
-        left: 12px;
-        top: 0;
-        border-radius: 12px;
-        background: rgba(255, 255, 255, 0.72);
-        box-shadow: 10px -7px 0 -3px rgba(255, 255, 255, 0.72), -8px -5px 0 -3px rgba(255, 255, 255, 0.72);
+      .cream-flake::after {
+        width: 30px;
+        height: 30px;
+        right: 4px;
+        top: -16px;
       }
 
       .rain-toggle {
@@ -1903,32 +1876,22 @@
       const rainToggle = document.getElementById("rain-toggle");
 
       if (!reduce) {
-        const kinds = ["cake", "cake", "cloud", "stack"];
-        for (let i = 0; i < 32; i += 1) {
+        const kinds = ["ricotta", "salt", "cream"];
+        for (let i = 0; i < 33; i += 1) {
           const drop = document.createElement("span");
           drop.className = "drop";
           const kind = kinds[i % kinds.length];
           const flake = document.createElement("span");
           flake.className = "flake";
-          if (kind === "cake") {
-            flake.classList.add("cake-flake");
-            if (i % 3 === 0) flake.classList.add("buttered");
-          } else if (kind === "cloud") {
-            flake.classList.add("cloud-flake");
-          } else {
-            flake.classList.add("stack-flake");
-            flake.append(document.createElement("i"), document.createElement("b"));
-            const puff = document.createElement("span");
-            puff.className = "puff";
-            flake.append(puff);
-          }
+          flake.classList.add(`${kind}-flake`);
           drop.append(flake);
           drop.style.left = `${Math.random() * 100}%`;
           drop.style.animationDuration = `${7 + Math.random() * 9}s`;
           drop.style.animationDelay = `${-Math.random() * 14}s`;
           drop.style.setProperty("--drift", `${(Math.random() - 0.5) * 120}px`);
           drop.style.setProperty("--spin", Math.random() < 0.5 ? "-1" : "1");
-          drop.style.setProperty("--size", (0.55 + Math.random() * 0.7).toFixed(2));
+          const scale = kind === "salt" ? 1.15 + Math.random() * 0.45 : 0.6 + Math.random() * 0.65;
+          drop.style.setProperty("--size", scale.toFixed(2));
           rain.append(drop);
         }
       }
@@ -1936,7 +1899,7 @@
       rainToggle.addEventListener("click", () => {
         const paused = rain.classList.toggle("is-paused");
         rainToggle.setAttribute("aria-pressed", String(!paused));
-        rainToggle.textContent = paused ? "Rain pancakes" : "Pause the rain";
+        rainToggle.textContent = paused ? "Rain again" : "Pause the rain";
       });
     </script>
   </body>
