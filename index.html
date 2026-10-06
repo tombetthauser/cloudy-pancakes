@@ -1,6 +1,1943 @@
-<h1>
-  Hello Cloudy Pancakes!
-</h1>
-<p>
-  <-- pancake hafe cloudy hafe -->
-</p>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Cloudy Pancakes</title>
+    <meta
+      name="description"
+      content="Half pancake, half cloud. A small griddle in the morning sky."
+    />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cellipse cx='32' cy='40' rx='22' ry='10' fill='%23c47a32'/%3E%3Cellipse cx='32' cy='34' rx='22' ry='10' fill='%23e8a85a'/%3E%3Cellipse cx='32' cy='28' rx='20' ry='9' fill='%23f0b15a'/%3E%3Crect x='26' y='16' width='12' height='8' rx='2' fill='%23f3d56a' transform='rotate(-8 32 20)'/%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,560;0,9..144,700;1,9..144,300;1,9..144,560&family=Outfit:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --ink: #2a1c14;
+        --ink-soft: #6a5346;
+        --paper: #f6f0e7;
+        --gold: #c4843a;
+        --syrup: #8d4e24;
+        --line: rgba(42, 28, 20, 0.12);
+        --serif: "Fraunces", "Iowan Old Style", Palatino, Georgia, serif;
+        --sans: "Outfit", "Avenir Next", "Segoe UI", sans-serif;
+        --shadow: 0 30px 60px rgba(90, 48, 18, 0.14);
+      }
+
+      * { box-sizing: border-box; }
+
+      html { scroll-behavior: smooth; }
+
+      body {
+        margin: 0;
+        color: var(--ink);
+        font-family: var(--sans);
+        font-weight: 400;
+        background:
+          radial-gradient(1100px 700px at 100% -10%, #ffe4bf 0%, transparent 55%),
+          radial-gradient(900px 640px at -15% 8%, #d5e6f4 0%, transparent 52%),
+          radial-gradient(700px 500px at 70% 110%, #f3d7c2 0%, transparent 50%),
+          var(--paper);
+        line-height: 1.5;
+        overflow-x: clip;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 8;
+        opacity: 0.18;
+        mix-blend-mode: multiply;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
+      }
+
+      ::selection {
+        background: #f0c27a;
+        color: #2a1c12;
+      }
+
+      a { color: inherit; }
+
+      img, svg { display: block; }
+
+      .skip {
+        position: absolute;
+        left: 12px;
+        top: -40px;
+        background: var(--ink);
+        color: var(--paper);
+        padding: 8px 12px;
+        z-index: 20;
+      }
+
+      .skip:focus { top: 12px; }
+
+      nav {
+        position: fixed;
+        top: 16px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        gap: 28px;
+        width: min(920px, calc(100% - 28px));
+        padding: 12px 18px;
+        border: 1px solid transparent;
+        border-radius: 999px;
+        transition: background 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+      }
+
+      nav.scrolled {
+        background: rgba(246, 240, 231, 0.78);
+        border-color: var(--line);
+        backdrop-filter: blur(16px);
+        box-shadow: 0 10px 40px rgba(70, 40, 20, 0.08);
+      }
+
+      .brand {
+        font-family: var(--serif);
+        font-weight: 560;
+        letter-spacing: -0.03em;
+        text-decoration: none;
+        margin-right: auto;
+      }
+
+      .brand i { font-style: italic; font-weight: 300; }
+
+      nav ul {
+        display: flex;
+        gap: 22px;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      nav a {
+        text-decoration: none;
+        font-size: 0.92rem;
+        letter-spacing: 0.02em;
+        color: var(--ink-soft);
+      }
+
+      nav a:hover { color: var(--ink); }
+
+      .nav-cta {
+        text-decoration: none;
+        background: var(--ink);
+        color: #f8f1e8;
+        padding: 8px 14px;
+        border-radius: 999px;
+        font-size: 0.88rem;
+      }
+
+      .nav-cta:hover { background: #3d2a20; }
+
+      .wrap {
+        width: min(1120px, calc(100% - 40px));
+        margin: 0 auto;
+      }
+
+      .hero {
+        position: relative;
+        min-height: 100svh;
+        display: grid;
+        grid-template-columns: 1.15fr 0.85fr;
+        align-items: center;
+        gap: 24px;
+        padding: 120px 0 72px;
+      }
+
+      .kicker {
+        margin: 0 0 18px;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        font-size: 0.74rem;
+        color: var(--syrup);
+        font-weight: 500;
+      }
+
+      h1 {
+        margin: 0;
+        font-family: var(--serif);
+        font-weight: 300;
+        font-size: clamp(4.6rem, 9vw, 8.4rem);
+        line-height: 0.82;
+        letter-spacing: -0.045em;
+      }
+
+      h1 em {
+        font-style: italic;
+        font-weight: 300;
+        display: block;
+      }
+
+      .dek {
+        max-width: 38ch;
+        font-size: 1.15rem;
+        color: var(--ink-soft);
+        margin: 28px 0 0;
+      }
+
+      .hero-actions {
+        display: flex;
+        gap: 18px;
+        align-items: center;
+        margin-top: 32px;
+      }
+
+      .btn {
+        appearance: none;
+        border: 0;
+        cursor: pointer;
+        font-family: var(--sans);
+        text-decoration: none;
+        background: linear-gradient(180deg, #e7a85a, #c47a32);
+        color: #2a160c;
+        padding: 14px 22px;
+        border-radius: 999px;
+        font-weight: 560;
+        box-shadow: 0 10px 24px rgba(160, 90, 30, 0.25);
+      }
+
+      .btn:hover { filter: brightness(1.05); }
+
+      .text-link {
+        color: var(--ink);
+        font-weight: 500;
+      }
+
+      .hero-art {
+        position: relative;
+        height: 520px;
+        display: grid;
+        place-items: center;
+      }
+
+      #motes {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+      }
+
+      .cloud {
+        position: absolute;
+        background: #fffdf8;
+        border-radius: 40px;
+        height: 46px;
+        opacity: 0.92;
+        filter: drop-shadow(0 18px 24px rgba(150, 120, 90, 0.12));
+        animation: drift 28s ease-in-out infinite;
+      }
+
+      .cloud::before,
+      .cloud::after {
+        content: "";
+        position: absolute;
+        background: inherit;
+        border-radius: 50%;
+      }
+
+      .cloud::before {
+        width: 54px;
+        height: 54px;
+        left: 18px;
+        top: -28px;
+      }
+
+      .cloud::after {
+        width: 78px;
+        height: 78px;
+        right: 22px;
+        top: -40px;
+      }
+
+      .c-a { width: 180px; top: 36px; left: -10px; animation-duration: 22s; }
+      .c-b { width: 240px; top: 78px; right: -30px; animation-duration: 32s; animation-delay: -8s; }
+      .c-c { width: 140px; bottom: 70px; left: 10px; animation-duration: 26s; animation-delay: -4s; opacity: 0.75; }
+
+      @keyframes drift {
+        0%, 100% { transform: translate3d(0, 0, 0); }
+        50% { transform: translate3d(18px, -12px, 0); }
+      }
+
+      .stack-wrap {
+        position: relative;
+        z-index: 1;
+        width: 300px;
+        margin-top: 20px;
+      }
+
+      .glow {
+        position: absolute;
+        left: 50%;
+        top: 46%;
+        width: 380px;
+        height: 240px;
+        transform: translate(-50%, -50%);
+        background: radial-gradient(ellipse, rgba(255, 196, 120, 0.72), transparent 68%);
+        filter: blur(6px);
+        z-index: -1;
+      }
+
+      .stack { position: relative; height: 250px; }
+
+      .cake {
+        position: absolute;
+        left: 50%;
+        width: var(--w);
+        height: 62px;
+        transform: translateX(-50%);
+        animation: settle 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+      }
+
+      .cake i,
+      .cake b {
+        position: absolute;
+        left: 0;
+        right: 0;
+        border-radius: 50%;
+        display: block;
+      }
+
+      .cake i {
+        top: 18px;
+        bottom: 0;
+        background: linear-gradient(#b86a34, #8a4520);
+      }
+
+      .cake b {
+        top: 0;
+        height: 40px;
+        background:
+          radial-gradient(circle at 22% 46%, rgba(120, 62, 24, 0.18) 0 3px, transparent 4px),
+          radial-gradient(circle at 68% 40%, rgba(120, 62, 24, 0.16) 0 2px, transparent 3.5px),
+          radial-gradient(circle at 48% 62%, rgba(255, 244, 220, 0.35) 0 8px, transparent 10px),
+          radial-gradient(ellipse at 40% 38%, #ffe0ae, #f0b15c 58%, #d4843c 100%);
+        box-shadow: inset 0 1px 0 rgba(255, 248, 230, 0.8);
+      }
+
+      .cake:nth-child(1) { --w: 250px; bottom: 0; animation-delay: 0.05s; }
+      .cake:nth-child(2) { --w: 268px; bottom: 42px; animation-delay: 0.18s; }
+      .cake:nth-child(3) { --w: 242px; bottom: 84px; animation-delay: 0.32s; }
+      .cake:nth-child(4) { --w: 258px; bottom: 126px; animation-delay: 0.46s; }
+
+      @keyframes settle {
+        from { transform: translateX(-50%) translateY(-36px); opacity: 0; }
+        to { transform: translateX(-50%) translateY(0); opacity: 1; }
+      }
+
+      .butter {
+        position: absolute;
+        width: 48px;
+        height: 30px;
+        left: 50%;
+        top: 46px;
+        transform: translateX(-50%) rotate(-10deg);
+        border-radius: 5px;
+        background: linear-gradient(160deg, #fff8dc, #f0d56a 55%, #e2bc55);
+        box-shadow:
+          inset 0 1px 0 #fff,
+          0 8px 10px rgba(90, 50, 20, 0.15);
+        z-index: 2;
+        animation: settle 0.8s 0.62s both;
+      }
+
+      .butter::after {
+        content: "";
+        position: absolute;
+        width: 16px;
+        height: 7px;
+        left: 8px;
+        top: 6px;
+        border-radius: 4px;
+        background: rgba(255, 255, 255, 0.75);
+        transform: rotate(-8deg);
+      }
+
+      .syrup-svg {
+        position: absolute;
+        width: 90px;
+        height: 150px;
+        right: 58px;
+        top: 42px;
+        z-index: 3;
+        overflow: visible;
+      }
+
+      .syrup-svg path {
+        fill: none;
+        stroke: #c56a28;
+        stroke-width: 5;
+        stroke-linecap: round;
+        stroke-dasharray: 180;
+        stroke-dashoffset: 180;
+        animation: pour 2.8s 0.8s ease forwards, drip 4.5s 3.6s ease-in-out infinite;
+      }
+
+      @keyframes pour { to { stroke-dashoffset: 0; } }
+
+      @keyframes drip {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(4px); }
+      }
+
+      .plate {
+        width: 300px;
+        height: 38px;
+        margin: -16px auto 0;
+        border-radius: 50%;
+        background: radial-gradient(ellipse at 50% 40%, #fff, #e6dfd4 62%, #c9bfb2 100%);
+        box-shadow: var(--shadow);
+      }
+
+      .marquee {
+        border-block: 1px solid var(--line);
+        overflow: hidden;
+        padding: 16px 0;
+        mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+      }
+
+      .track {
+        display: flex;
+        width: max-content;
+        animation: ticker 32s linear infinite;
+      }
+
+      .marquee:hover .track { animation-play-state: paused; }
+
+      .group {
+        display: flex;
+        gap: 28px;
+        padding-right: 28px;
+        font-family: var(--serif);
+        font-style: italic;
+        font-size: 1.25rem;
+        letter-spacing: -0.02em;
+        color: var(--ink-soft);
+      }
+
+      .group span::before {
+        content: "✦";
+        font-style: normal;
+        margin-right: 28px;
+        color: var(--gold);
+        font-size: 0.7rem;
+        vertical-align: middle;
+      }
+
+      @keyframes ticker {
+        to { transform: translateX(-50%); }
+      }
+
+      section { padding: 108px 0; }
+
+      h2 {
+        font-family: var(--serif);
+        font-weight: 300;
+        font-size: clamp(2.6rem, 5vw, 4.6rem);
+        letter-spacing: -0.04em;
+        line-height: 0.95;
+        margin: 0 0 28px;
+      }
+
+      .story-grid {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 48px;
+        align-items: end;
+      }
+
+      .story-grid p {
+        margin: 0;
+        font-size: 1.12rem;
+        color: var(--ink-soft);
+      }
+
+      .story-grid p + p { margin-top: 16px; }
+
+      blockquote {
+        margin: 0;
+        font-family: var(--serif);
+        font-weight: 300;
+        font-style: italic;
+        font-size: clamp(2rem, 4vw, 3.3rem);
+        line-height: 1.05;
+        letter-spacing: -0.03em;
+      }
+
+      blockquote footer {
+        margin-top: 18px;
+        font-family: var(--sans);
+        font-style: normal;
+        font-size: 0.82rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--syrup);
+      }
+
+      .menu-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        gap: 24px;
+        margin-bottom: 18px;
+      }
+
+      .menu-head p {
+        max-width: 32ch;
+        color: var(--ink-soft);
+        margin: 0 0 8px;
+      }
+
+      .menu {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      .menu li {
+        position: relative;
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        gap: 28px;
+        align-items: baseline;
+        padding: 28px 8px 28px 18px;
+        border-top: 1px solid var(--line);
+        transition: background 0.35s ease;
+      }
+
+      .menu li:last-child { border-bottom: 1px solid var(--line); }
+
+      .menu li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 18px;
+        bottom: 18px;
+        width: 0;
+        background: linear-gradient(#e8b15a, #c47a32);
+        transition: width 0.35s ease;
+      }
+
+      .menu li:hover { background: rgba(255, 248, 238, 0.55); }
+      .menu li:hover::before { width: 3px; }
+
+      .num {
+        font-family: var(--serif);
+        font-style: italic;
+        color: var(--gold);
+        font-size: 1.2rem;
+      }
+
+      .menu h3 {
+        margin: 0;
+        font-family: var(--serif);
+        font-weight: 560;
+        font-size: 2rem;
+        letter-spacing: -0.03em;
+      }
+
+      .menu p {
+        margin: 6px 0 0;
+        color: var(--ink-soft);
+      }
+
+      .price {
+        font-family: var(--serif);
+        font-size: 1.8rem;
+        letter-spacing: -0.03em;
+      }
+
+      .price small {
+        font-family: var(--sans);
+        font-size: 0.72rem;
+        letter-spacing: 0.14em;
+        margin-right: 4px;
+        color: var(--ink-soft);
+      }
+
+      .compose {
+        padding-top: 40px;
+      }
+
+      .composer {
+        display: grid;
+        grid-template-columns: 1fr 0.9fr;
+        gap: 48px;
+        align-items: center;
+        padding: 36px;
+        border-radius: 36px;
+        background:
+          linear-gradient(180deg, rgba(255, 252, 247, 0.72), rgba(255, 246, 236, 0.4));
+        border: 1px solid rgba(255, 255, 255, 0.7);
+        box-shadow: 0 24px 80px rgba(90, 50, 20, 0.08);
+      }
+
+      fieldset {
+        border: 0;
+        margin: 0 0 22px;
+        padding: 0;
+      }
+
+      legend {
+        font-size: 0.75rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--syrup);
+        margin-bottom: 12px;
+        padding: 0;
+      }
+
+      .choices {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .choice {
+        position: relative;
+      }
+
+      .choice input {
+        position: absolute;
+        opacity: 0;
+        inset: 0;
+        margin: 0;
+        cursor: pointer;
+      }
+
+      .choice span {
+        display: inline-flex;
+        align-items: center;
+        padding: 10px 14px;
+        border-radius: 999px;
+        border: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.45);
+        font-size: 0.95rem;
+      }
+
+      .choice input:focus-visible + span {
+        outline: 2px solid var(--gold);
+        outline-offset: 2px;
+      }
+
+      .choice input:checked + span {
+        background: var(--ink);
+        color: #f6efe6;
+        border-color: var(--ink);
+      }
+
+      .live-name {
+        min-height: 3.2em;
+        margin: 8px 0 18px;
+        font-family: var(--serif);
+        font-style: italic;
+        font-weight: 300;
+        font-size: 1.8rem;
+        letter-spacing: -0.03em;
+        line-height: 1.15;
+      }
+
+      .receipt {
+        margin-top: 16px;
+        padding: 14px 16px;
+        border-radius: 16px;
+        background: #fffaf3;
+        border: 1px dashed rgba(141, 78, 36, 0.45);
+      }
+
+      .receipt[hidden] { display: none; }
+
+      .receipt p { margin: 6px 0 0; color: var(--ink-soft); }
+
+      .receipt strong { font-family: var(--serif); font-weight: 560; }
+
+      .stage {
+        position: relative;
+        min-height: 420px;
+        display: grid;
+        place-items: center;
+      }
+
+      .mini {
+        width: 250px;
+        position: relative;
+        transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
+      }
+
+      .mini.served { transform: translateY(-10px) scale(1.03); }
+
+      .mini .stack { height: 210px; }
+
+      .mini .cake:nth-child(1) { --w: 210px; }
+      .mini .cake:nth-child(2) { --w: 226px; bottom: 36px; }
+      .mini .cake:nth-child(3) { --w: 204px; bottom: 72px; }
+      .mini .cake:nth-child(4) { --w: 218px; bottom: 108px; }
+
+      .builder:has(input[value="blueberry"]:checked) .cake b {
+        background:
+          radial-gradient(circle at 30% 48%, #6d4e86 0 4px, transparent 5px),
+          radial-gradient(circle at 62% 42%, #4d3d72 0 3px, transparent 4px),
+          radial-gradient(ellipse at 40% 38%, #f0d4ef, #c49bc4 60%, #8d6494);
+      }
+
+      .builder:has(input[value="blueberry"]:checked) .cake i {
+        background: linear-gradient(#7d5d86, #4d3458);
+      }
+
+      .builder:has(input[value="chocolate"]:checked) .cake b {
+        background:
+          radial-gradient(circle at 28% 50%, rgba(40, 20, 12, 0.45) 0 3px, transparent 4px),
+          radial-gradient(ellipse at 40% 36%, #8a5a42, #5a3428 58%, #3a2018);
+      }
+
+      .builder:has(input[value="chocolate"]:checked) .cake i {
+        background: linear-gradient(#4a2c22, #24140f);
+      }
+
+      .builder:has(input[value="ricotta"]:checked) .cake b {
+        background:
+          radial-gradient(circle at 34% 46%, rgba(210, 180, 90, 0.45) 0 2px, transparent 3px),
+          radial-gradient(ellipse at 42% 38%, #fff8ee, #f3e2c4 62%, #e4cfae);
+      }
+
+      .builder:has(input[value="ricotta"]:checked) .cake i {
+        background: linear-gradient(#e7d3b0, #c9b08a);
+      }
+
+      .toppings { position: absolute; inset: 0; pointer-events: none; z-index: 4; }
+
+      .topping { position: absolute; opacity: 0; transition: opacity 0.35s ease; }
+
+      .builder:has(#butter:checked) .topping-butter,
+      .builder:has(#maple:checked) .topping-maple,
+      .builder:has(#berries:checked) .topping-berries,
+      .builder:has(#cream:checked) .topping-cream,
+      .builder:has(#honey:checked) .topping-honey,
+      .builder:has(#salt:checked) .topping-salt {
+        opacity: 1;
+      }
+
+      .topping-butter {
+        width: 42px;
+        height: 26px;
+        left: 46%;
+        top: 28px;
+        border-radius: 4px;
+        transform: rotate(-12deg);
+        background: linear-gradient(160deg, #fff8dc, #e7c85f);
+        box-shadow: inset 0 1px 0 #fff;
+      }
+
+      .topping-maple {
+        width: 7px;
+        height: 78px;
+        right: 62px;
+        top: 48px;
+        border-radius: 8px;
+        background: linear-gradient(#e39a42, #a85a22);
+      }
+
+      .topping-maple::after {
+        content: "";
+        position: absolute;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: #a85a22;
+        left: -2px;
+        bottom: -4px;
+      }
+
+      .topping-berries {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: #9a3350;
+        left: 38%;
+        top: 78px;
+        box-shadow:
+          22px 4px 0 #31407a,
+          -16px 10px 0 #c45258,
+          8px 18px 0 #6c3f72,
+          30px 20px 0 #d4654a;
+      }
+
+      .topping-cream {
+        width: 70px;
+        height: 28px;
+        left: 28%;
+        top: 18px;
+        border-radius: 20px;
+        background: #fff;
+        box-shadow:
+          -16px 6px 0 -4px #fff,
+          20px 4px 0 -6px #fff;
+      }
+
+      .topping-honey {
+        width: 54px;
+        height: 8px;
+        left: 34%;
+        top: 70px;
+        border-radius: 8px;
+        background: #e2a63a;
+        transform: rotate(-8deg);
+        box-shadow: 10px 14px 0 -1px #d4922e;
+      }
+
+      .topping-salt {
+        width: 3px;
+        height: 3px;
+        background: #fff;
+        border-radius: 50%;
+        left: 58%;
+        top: 64px;
+        box-shadow:
+          10px 6px 0 #fff,
+          -8px 12px 0 #fff,
+          16px 16px 0 #f4f4f4,
+          -14px 2px 0 #fff,
+          4px 20px 0 #fff;
+      }
+
+      .mini .plate { width: 250px; }
+
+      footer.site {
+        padding: 40px 0 64px;
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        color: var(--ink-soft);
+        border-top: 1px solid var(--line);
+      }
+
+      footer.site strong {
+        font-family: var(--serif);
+        font-weight: 560;
+        color: var(--ink);
+        font-size: 1.4rem;
+      }
+
+      footer.site p { margin: 6px 0 0; }
+
+      .signoff {
+        font-family: var(--serif);
+        font-style: italic;
+      }
+
+      :focus-visible {
+        outline: 2px solid var(--gold);
+        outline-offset: 3px;
+      }
+
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      .house-board {
+        display: grid;
+        grid-template-columns: 1.08fr 0.92fr;
+        gap: 40px;
+        align-items: center;
+      }
+
+      .house-scene {
+        position: relative;
+        height: 500px;
+        border-radius: 32px;
+        overflow: hidden;
+        background:
+          radial-gradient(420px 200px at 72% 16%, rgba(255, 255, 255, 0.95), transparent 70%),
+          linear-gradient(#d5e6f6 0 58%, #e7d5be 58% 100%);
+        border: 1px solid rgba(255, 255, 255, 0.75);
+        box-shadow: 0 24px 70px rgba(90, 50, 20, 0.1);
+      }
+
+      .here-flag {
+        position: absolute;
+        z-index: 2;
+        top: 16px;
+        left: 16px;
+        margin: 0;
+        padding: 7px 12px;
+        border-radius: 999px;
+        background: rgba(255, 248, 240, 0.92);
+        color: var(--syrup);
+        font-size: 0.78rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+
+      .cottage {
+        position: absolute;
+        width: 300px;
+        height: 330px;
+        left: 54%;
+        bottom: 72px;
+        transform: translateX(-50%);
+      }
+
+      .chimney {
+        position: absolute;
+        top: 36px;
+        right: 58px;
+        width: 26px;
+        height: 48px;
+        background: #6b3a28;
+        border-radius: 3px 3px 0 0;
+        z-index: 0;
+      }
+
+      .smoke {
+        position: absolute;
+        width: 16px;
+        height: 16px;
+        left: 8px;
+        top: -14px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.85);
+        animation: drift 6s ease-in-out infinite;
+      }
+
+      .roof {
+        position: absolute;
+        z-index: 1;
+        top: 22px;
+        left: -26px;
+        right: -26px;
+        height: 128px;
+        background: linear-gradient(#b86a34, #7c4120);
+        clip-path: polygon(50% 0, 100% 100%, 0 100%);
+      }
+
+      .wall {
+        position: absolute;
+        z-index: 1;
+        left: 16px;
+        right: 16px;
+        top: 132px;
+        bottom: 0;
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-evenly;
+        background: linear-gradient(#fff9f1, #f3e4d0);
+        box-shadow: inset 0 8px 0 rgba(255, 255, 255, 0.4);
+      }
+
+      .pane {
+        width: 54px;
+        height: 70px;
+        margin-bottom: 72px;
+        background: linear-gradient(#f8fcff, #d5e6f4);
+        box-shadow: inset 0 0 0 6px #f6ecdf, inset 0 0 0 8px #c4a27a;
+        position: relative;
+      }
+
+      .pane::before,
+      .pane::after {
+        content: "";
+        position: absolute;
+        background: rgba(122, 84, 52, 0.45);
+      }
+
+      .pane::before {
+        left: 50%;
+        top: 8px;
+        bottom: 8px;
+        width: 2px;
+      }
+
+      .pane::after {
+        top: 50%;
+        left: 8px;
+        right: 8px;
+        height: 2px;
+      }
+
+      .inside-glow {
+        position: absolute;
+        width: 96px;
+        height: 148px;
+        left: 50%;
+        bottom: 0;
+        transform: translateX(-50%);
+        background: #3a2418;
+        opacity: 0;
+      }
+
+      .door {
+        position: relative;
+        z-index: 1;
+        width: 96px;
+        height: 148px;
+        border-radius: 48px 48px 3px 3px;
+        background: linear-gradient(#c9843e, #8a4b22);
+        transform-origin: left center;
+        transition: transform 0.45s ease;
+        box-shadow: inset -10px 0 0 rgba(70, 30, 10, 0.12);
+      }
+
+      .knob {
+        position: absolute;
+        width: 11px;
+        height: 11px;
+        border-radius: 50%;
+        right: 14px;
+        top: 78px;
+        background: #f3d56a;
+        box-shadow: 0 0 0 3px rgba(90, 50, 20, 0.15);
+      }
+
+      .house-board:has(#where-dining:checked) .door,
+      .house-board:has(#where-griddle:checked) .door,
+      .house-board:has(#where-wash:checked) .door {
+        transform: perspective(520px) rotateY(-68deg);
+      }
+
+      .house-board:has(#where-dining:checked) .inside-glow {
+        opacity: 1;
+        background: linear-gradient(#ffe0ae, #e7b15c);
+      }
+
+      .house-board:has(#where-griddle:checked) .inside-glow {
+        opacity: 1;
+        background: linear-gradient(#ffb15e, #c2541c);
+      }
+
+      .house-board:has(#where-wash:checked) .inside-glow {
+        opacity: 1;
+        background: linear-gradient(#f4fbff, #b7d6ee);
+      }
+
+      .stoop {
+        position: absolute;
+        z-index: 1;
+        left: 78px;
+        right: 78px;
+        bottom: -6px;
+        height: 14px;
+        background: #f7f1e8;
+        border-radius: 2px;
+      }
+
+      .ramp {
+        position: absolute;
+        z-index: 1;
+        left: 6%;
+        bottom: 62px;
+        width: 42%;
+        height: 86px;
+        background: linear-gradient(#e4c7a0, #c49668);
+        clip-path: polygon(0 100%, 92% 0, 100% 0, 100% 22%, 8% 100%);
+      }
+
+      .house-board:has(#where-doorstep:checked) .ramp {
+        filter: drop-shadow(0 0 0.4rem rgba(196, 132, 58, 0.85));
+      }
+
+      .rail {
+        position: absolute;
+        z-index: 2;
+        left: 9%;
+        bottom: 128px;
+        width: 30%;
+        height: 6px;
+        border-radius: 6px;
+        background: #5c3a24;
+        transform: rotate(-16deg);
+        transform-origin: left center;
+      }
+
+      .rail::before,
+      .rail::after {
+        content: "";
+        position: absolute;
+        width: 6px;
+        background: #5c3a24;
+        border-radius: 6px;
+      }
+
+      .rail::before {
+        height: 42px;
+        left: 0;
+        top: 4px;
+      }
+
+      .rail::after {
+        height: 28px;
+        right: 0;
+        top: 2px;
+      }
+
+      .access-sign {
+        position: absolute;
+        z-index: 2;
+        right: 18px;
+        bottom: 92px;
+        width: 42px;
+        height: 42px;
+        display: grid;
+        place-items: center;
+        background: #0b5cab;
+        border-radius: 6px;
+        box-shadow: 0 8px 16px rgba(20, 40, 70, 0.18);
+      }
+
+      .room-copy { display: none; }
+
+      .house-board:has(#where-doorstep:checked) [data-room="doorstep"],
+      .house-board:has(#where-dining:checked) [data-room="dining"],
+      .house-board:has(#where-griddle:checked) [data-room="griddle"],
+      .house-board:has(#where-wash:checked) [data-room="wash"] {
+        display: block;
+      }
+
+      .room-copy h3 {
+        margin: 0 0 8px;
+        font-family: var(--serif);
+        font-weight: 560;
+        font-size: clamp(1.8rem, 3vw, 2.4rem);
+        letter-spacing: -0.03em;
+      }
+
+      .room-copy p {
+        margin: 0 0 12px;
+        color: var(--ink-soft);
+        font-size: 1.05rem;
+      }
+
+      .room-copy ul {
+        margin: 0;
+        padding-left: 1.15rem;
+        color: var(--ink);
+      }
+
+      .room-copy li { margin: 8px 0; }
+
+      .house-board .choice span { min-height: 44px; }
+
+      .sketch-lead {
+        max-width: 42ch;
+        margin: -6px 0 34px;
+        color: var(--ink-soft);
+        font-size: 1.08rem;
+      }
+
+      .sheet {
+        position: relative;
+        margin: 0;
+        padding: 12px 12px 14px;
+        background: #fffaf3;
+        border-radius: 8px;
+        box-shadow:
+          0 18px 40px rgba(80, 48, 20, 0.12),
+          0 1px 0 rgba(255, 255, 255, 0.9) inset;
+      }
+
+      .sheet::before {
+        content: "";
+        position: absolute;
+        top: -11px;
+        left: 50%;
+        width: 58px;
+        height: 18px;
+        transform: translateX(-50%) rotate(-3deg);
+        border-radius: 2px;
+        background: rgba(226, 186, 104, 0.55);
+      }
+
+      .sheet img {
+        width: 100%;
+        height: auto;
+        display: block;
+        border-radius: 3px;
+        background: #f7f1e6;
+      }
+
+      .sheet figcaption {
+        margin-top: 10px;
+        text-align: center;
+        font-family: var(--serif);
+        font-style: italic;
+        font-size: 1.2rem;
+        letter-spacing: -0.02em;
+      }
+
+      .sheet-hero {
+        max-width: 520px;
+        margin: 8px auto 42px;
+        transform: rotate(-1.1deg);
+      }
+
+      .sheet-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 26px 18px;
+        align-items: start;
+      }
+
+      .tilt-a { transform: rotate(-2.2deg); }
+      .tilt-b { transform: rotate(1.8deg) translateY(14px); }
+      .tilt-c { transform: rotate(1.3deg); }
+      .tilt-d { transform: rotate(-1.7deg) translateY(12px); }
+
+      .sheet:hover {
+        z-index: 2;
+        transform: rotate(0deg) translateY(-8px);
+      }
+
+      @media (max-width: 860px) {
+
+        nav {
+          gap: 8px 12px;
+          flex-wrap: wrap;
+          width: min(920px, calc(100% - 16px));
+          border-radius: 22px;
+        }
+
+        nav ul { gap: 12px; }
+
+        .hero,
+        .story-grid,
+        .composer,
+        .house-board,
+        .menu-head,
+        footer.site {
+          grid-template-columns: 1fr;
+          display: grid;
+        }
+
+        .house-scene { height: 420px; }
+
+        .sheet-grid { grid-template-columns: 1fr 1fr; }
+
+        .sheet-hero,
+        .tilt-a,
+        .tilt-b,
+        .tilt-c,
+        .tilt-d { transform: none; }
+
+        .hero { padding-top: 110px; min-height: auto; }
+
+        .hero-art { height: 440px; }
+
+        h1 { font-size: clamp(3.6rem, 16vw, 5.4rem); }
+
+        .menu li {
+          grid-template-columns: auto 1fr;
+          gap: 12px 16px;
+        }
+
+        .price { grid-column: 2; }
+
+        footer.site { display: flex; flex-direction: column; }
+      }
+
+      .rain {
+        position: fixed;
+        inset: 0;
+        z-index: 9;
+        overflow: hidden;
+        pointer-events: none;
+      }
+
+      .drop {
+        position: absolute;
+        top: -18vh;
+        animation-name: pancake-fall;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+      }
+
+      @keyframes pancake-fall {
+        from { transform: translate3d(0, 0, 0) rotate(0deg); }
+        to { transform: translate3d(var(--drift), 125vh, 0) rotate(calc(var(--spin) * 240deg)); }
+      }
+
+      .flake { display: block; transform: scale(var(--size)); }
+
+      .cake-flake {
+        position: relative;
+        width: 58px;
+        height: 24px;
+        border-radius: 50%;
+        background:
+          radial-gradient(circle at 30% 45%, rgba(120, 70, 30, 0.18) 0 2px, transparent 3px),
+          radial-gradient(ellipse at 38% 35%, #ffe3b5, #f0b15c 58%, #d4843c);
+        box-shadow:
+          0 9px 0 #a15a28,
+          0 12px 14px rgba(90, 40, 10, 0.12);
+      }
+
+      .cake-flake.buttered::after {
+        content: "";
+        position: absolute;
+        width: 16px;
+        height: 10px;
+        left: 20px;
+        top: -4px;
+        border-radius: 3px;
+        background: linear-gradient(#fff6d4, #f0d56a);
+        transform: rotate(-8deg);
+      }
+
+      .cloud-flake {
+        position: relative;
+        width: 74px;
+        height: 24px;
+        border-radius: 20px;
+        background: #fffdf8;
+        opacity: 0.55;
+        filter: drop-shadow(0 8px 10px rgba(140, 120, 100, 0.12));
+      }
+
+      .cloud-flake::before,
+      .cloud-flake::after {
+        content: "";
+        position: absolute;
+        background: #fffdf8;
+        border-radius: 50%;
+      }
+
+      .cloud-flake::before {
+        width: 28px;
+        height: 28px;
+        left: 12px;
+        top: -14px;
+      }
+
+      .cloud-flake::after {
+        width: 38px;
+        height: 38px;
+        right: 10px;
+        top: -22px;
+      }
+
+      .stack-flake {
+        position: relative;
+        width: 64px;
+        height: 46px;
+      }
+
+      .stack-flake i,
+      .stack-flake b {
+        position: absolute;
+        border-radius: 50%;
+      }
+
+      .stack-flake i {
+        width: 62px;
+        height: 20px;
+        left: 0;
+        bottom: 0;
+        background: linear-gradient(#e7b56a, #b86a34 40%, #8d4e24);
+      }
+
+      .stack-flake b {
+        width: 54px;
+        height: 18px;
+        left: 4px;
+        bottom: 12px;
+        background: radial-gradient(ellipse at 40% 38%, #ffe3b5, #e8a85a 70%);
+      }
+
+      .stack-flake .puff {
+        position: absolute;
+        width: 36px;
+        height: 14px;
+        left: 12px;
+        top: 0;
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.72);
+        box-shadow: 10px -7px 0 -3px rgba(255, 255, 255, 0.72), -8px -5px 0 -3px rgba(255, 255, 255, 0.72);
+      }
+
+      .rain-toggle {
+        position: fixed;
+        z-index: 11;
+        right: 18px;
+        bottom: 18px;
+        border: 1px solid var(--line);
+        background: rgba(246, 240, 231, 0.92);
+        color: var(--ink);
+        font-family: var(--sans);
+        font-size: 0.92rem;
+        padding: 10px 14px;
+        border-radius: 999px;
+        cursor: pointer;
+        min-height: 44px;
+        backdrop-filter: blur(10px);
+      }
+
+      .rain-toggle:hover { background: #fff; }
+
+      .rain.is-paused { display: none; }
+
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+
+        *,
+        *::before,
+        *::after {
+          animation: none !important;
+          transition: none !important;
+        }
+
+        .rain,
+        .rain-toggle { display: none; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="rain" id="rain" aria-hidden="true"></div>
+    <button class="rain-toggle" id="rain-toggle" type="button" aria-pressed="true">Pause the rain</button>
+    <a class="skip" href="#main">Skip to content</a>
+    <nav id="nav" aria-label="Primary">
+      <a class="brand" href="#top"><i>Cloudy</i> Pancakes</a>
+      <ul>
+        <li><a href="#story">Kitchen</a></li>
+        <li><a href="#drawings">Drawings</a></li>
+        <li><a href="#house">House</a></li>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#compose">Compose</a></li>
+      </ul>
+      <a class="nav-cta" href="#compose">Build a stack</a>
+    </nav>
+
+    <main id="main">
+    <header class="wrap hero" id="top">
+      <div>
+        <p class="kicker">Griddled from first light</p>
+        <h1>
+          <em>Cloudy</em>
+          Pancakes
+        </h1>
+        <p class="dek">
+          Half pancake, half cloud. Edges bronzed, centers still fog,
+          butter already giving in.
+        </p>
+        <div class="hero-actions">
+          <a class="btn" href="#compose">Compose a stack</a>
+          <a class="text-link" href="#menu">Read the menu</a>
+        </div>
+      </div>
+      <div class="hero-art" id="hero-art">
+        <canvas id="motes" aria-hidden="true"></canvas>
+        <div class="cloud c-a"></div>
+        <div class="cloud c-b"></div>
+        <div class="cloud c-c"></div>
+        <div class="stack-wrap" id="stack-wrap">
+          <div class="glow"></div>
+          <div class="stack">
+            <div class="cake"><i></i><b></b></div>
+            <div class="cake"><i></i><b></b></div>
+            <div class="cake"><i></i><b></b></div>
+            <div class="cake"><i></i><b></b></div>
+            <div class="butter"></div>
+            <svg class="syrup-svg" viewBox="0 0 60 140" aria-hidden="true">
+              <path d="M30 4 C 30 28, 46 30, 42 58 C 38 84, 50 96, 46 132" />
+            </svg>
+          </div>
+          <div class="plate"></div>
+        </div>
+      </div>
+    </header>
+
+    <div class="marquee" aria-hidden="true">
+      <div class="track">
+        <div class="group">
+          <span>buttermilk</span>
+          <span>cultured butter</span>
+          <span>dark maple</span>
+          <span>lemon ricotta</span>
+          <span>cloud cream</span>
+          <span>sea salt</span>
+          <span>blueberry</span>
+          <span>wildflower honey</span>
+        </div>
+        <div class="group">
+          <span>buttermilk</span>
+          <span>cultured butter</span>
+          <span>dark maple</span>
+          <span>lemon ricotta</span>
+          <span>cloud cream</span>
+          <span>sea salt</span>
+          <span>blueberry</span>
+          <span>wildflower honey</span>
+        </div>
+      </div>
+    </div>
+
+    <section id="story">
+      <div class="wrap story-grid">
+        <div>
+          <p class="kicker">The kitchen</p>
+          <h2>Soft enough to be weather.</h2>
+          <p>
+            We pour them thick and leave them alone until the surface
+            sets into little craters. The side that meets the iron goes
+            amber. The side that meets the air stays pale, almost sky.
+          </p>
+          <p>
+            Nothing here is in a hurry except the butter, which understands
+            the assignment immediately.
+          </p>
+        </div>
+        <blockquote>
+          pancake hafe, cloudy hafe.
+          <footer>House motto, still handwritten</footer>
+        </blockquote>
+      </div>
+    </section>
+
+    <section id="drawings" aria-labelledby="drawings-title">
+      <div class="wrap">
+        <p class="kicker">Left on the table</p>
+        <h2 id="drawings-title">Crayon, still warm.</h2>
+        <p class="sketch-lead">Five drawings from the paper pile. The gray is gone. The weather stayed.</p>
+        <figure class="sheet sheet-hero">
+          <img
+            src="images/hello-everyone.jpg"
+            alt="A crayon drawing in yellow and pink that says hello everyone and wow, with a large smile, stick figures, and a small cat."
+            width="1073"
+            height="1492"
+          />
+          <figcaption>Hello everyone.</figcaption>
+        </figure>
+        <div class="sheet-grid">
+          <figure class="sheet tilt-a">
+            <img
+              src="images/milk-wet.jpg"
+              alt="A blue crayon drawing of a milk carton with the words milk and wet."
+              width="766"
+              height="826"
+            />
+            <figcaption>Milk, wet.</figcaption>
+          </figure>
+          <figure class="sheet tilt-b">
+            <img
+              src="images/cloud-wet.jpg"
+              alt="A blue crayon drawing of a cloud with the word wet inside it."
+              width="660"
+              height="774"
+            />
+            <figcaption>A wet cloud.</figcaption>
+          </figure>
+          <figure class="sheet tilt-c">
+            <img
+              src="images/flower-wet.jpg"
+              alt="A blue crayon drawing of a tall shape labeled flower and wet."
+              width="1230"
+              height="1500"
+            />
+            <figcaption>Flower, wet.</figcaption>
+          </figure>
+          <figure class="sheet tilt-d">
+            <img
+              src="images/pancake-friend.jpg"
+              alt="An orange crayon drawing of a round scribbled shape with three long legs."
+              width="1382"
+              height="1200"
+            />
+            <figcaption>Round, with legs.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section id="house" aria-labelledby="house-title">
+      <div class="wrap">
+        <p class="kicker">The house</p>
+        <h2 id="house-title">Come in on the level.</h2>
+        <div class="house-board" id="house-board">
+          <div class="house-scene">
+            <p class="here-flag" id="here-flag">At the door</p>
+            <div class="cottage" aria-hidden="true">
+              <div class="chimney"><span class="smoke"></span></div>
+              <div class="roof"></div>
+              <div class="wall">
+                <div class="inside-glow"></div>
+                <div class="pane"></div>
+                <div class="door"><span class="knob"></span></div>
+                <div class="pane"></div>
+              </div>
+              <div class="stoop"></div>
+            </div>
+            <div class="ramp" aria-hidden="true"></div>
+            <div class="rail" aria-hidden="true"></div>
+            <div class="access-sign" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="24" height="24">
+                <circle cx="12" cy="4.2" r="2" fill="#fff" />
+                <path d="M8.2 9.2h4.2l2.2 2.4h2.2M12.2 8.2v6.2" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+                <circle cx="9.2" cy="17.2" r="3.1" fill="none" stroke="#fff" stroke-width="1.7" />
+                <path d="M12.2 14.4l2.6 4.2" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round" />
+              </svg>
+            </div>
+          </div>
+          <form id="house-form">
+            <fieldset>
+              <legend>Where to</legend>
+              <div class="choices">
+                <label class="choice">
+                  <input type="radio" name="where" id="where-doorstep" value="doorstep" checked />
+                  <span>At the door</span>
+                </label>
+                <label class="choice">
+                  <input type="radio" name="where" id="where-dining" value="dining" />
+                  <span>Dining room</span>
+                </label>
+                <label class="choice">
+                  <input type="radio" name="where" id="where-griddle" value="griddle" />
+                  <span>The pass</span>
+                </label>
+                <label class="choice">
+                  <input type="radio" name="where" id="where-wash" value="wash" />
+                  <span>Washroom</span>
+                </label>
+              </div>
+            </fieldset>
+            <div class="room-copy" data-room="doorstep">
+              <h3>At the door</h3>
+              <p>The path climbs as a ramp. There is no step between the street and the plate.</p>
+              <ul>
+                <li>Ramp from the path, with a rail on the open side</li>
+                <li>Door wide enough for a wheelchair</li>
+                <li>Bell at seated height</li>
+                <li>Threshold flush with the floor</li>
+              </ul>
+            </div>
+            <div class="room-copy" data-room="dining">
+              <h3>Dining room</h3>
+              <p>Tables keep a clear lane between them, wide enough to turn.</p>
+              <ul>
+                <li>A path you can roll through, not squeeze past</li>
+                <li>Chairs move, and there is space to stay in yours</li>
+                <li>Menus in large type</li>
+                <li>Ask, and someone will read the menu aloud</li>
+              </ul>
+            </div>
+            <div class="room-copy" data-room="griddle">
+              <h3>The pass</h3>
+              <p>You can watch the stack land without standing up to see over the counter.</p>
+              <ul>
+                <li>A lower stretch of counter</li>
+                <li>The hot iron stays behind the pass</li>
+                <li>Seated height has a clear view of the griddle</li>
+              </ul>
+            </div>
+            <div class="room-copy" data-room="wash">
+              <h3>Washroom</h3>
+              <p>One room, on the same floor, with space to close the door behind a chair.</p>
+              <ul>
+                <li>Room to turn a wheelchair</li>
+                <li>Bars beside the toilet</li>
+                <li>A sink with open space underneath</li>
+              </ul>
+            </div>
+            <p class="sr-only" id="house-announce" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section id="menu">
+      <div class="wrap">
+        <div class="menu-head">
+          <h2>The griddle.</h2>
+          <p>Four stacks. The rest of the morning can arrange itself.</p>
+        </div>
+        <ol class="menu">
+          <li>
+            <span class="num">01</span>
+            <div>
+              <h3>The Classic Cloud</h3>
+              <p>Buttermilk, cultured butter, and maple dark enough to stain the plate.</p>
+            </div>
+            <span class="price"><small>USD</small>14</span>
+          </li>
+          <li>
+            <span class="num">02</span>
+            <div>
+              <h3>Blue Hour</h3>
+              <p>Blueberries burst into the batter, finished with lemon zest and cloud cream.</p>
+            </div>
+            <span class="price"><small>USD</small>16</span>
+          </li>
+          <li>
+            <span class="num">03</span>
+            <div>
+              <h3>Midnight Griddle</h3>
+              <p>Cocoa batter, espresso butter, a pinch of salt like stars over a dark field.</p>
+            </div>
+            <span class="price"><small>USD</small>17</span>
+          </li>
+          <li>
+            <span class="num">04</span>
+            <div>
+              <h3>Sunday Ricotta</h3>
+              <p>Lemon ricotta cakes, wildflower honey, and thyme that stayed the night.</p>
+            </div>
+            <span class="price"><small>USD</small>18</span>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="compose" id="compose">
+      <div class="wrap">
+        <p class="kicker">The pass</p>
+        <h2>Build the one you meant.</h2>
+        <div class="composer builder">
+          <form id="builder">
+            <fieldset>
+              <legend>Batter</legend>
+              <div class="choices">
+                <label class="choice"><input type="radio" name="batter" value="buttermilk" checked /><span>Buttermilk</span></label>
+                <label class="choice"><input type="radio" name="batter" value="blueberry" /><span>Blueberry</span></label>
+                <label class="choice"><input type="radio" name="batter" value="chocolate" /><span>Chocolate</span></label>
+                <label class="choice"><input type="radio" name="batter" value="ricotta" /><span>Ricotta</span></label>
+              </div>
+            </fieldset>
+            <fieldset>
+              <legend>On top</legend>
+              <div class="choices">
+                <label class="choice"><input type="checkbox" id="butter" value="butter" checked /><span>Butter</span></label>
+                <label class="choice"><input type="checkbox" id="maple" value="maple" checked /><span>Maple</span></label>
+                <label class="choice"><input type="checkbox" id="berries" value="berries" /><span>Berries</span></label>
+                <label class="choice"><input type="checkbox" id="cream" value="cream" /><span>Cloud cream</span></label>
+                <label class="choice"><input type="checkbox" id="honey" value="honey" /><span>Honey</span></label>
+                <label class="choice"><input type="checkbox" id="salt" value="salt" /><span>Sea salt</span></label>
+              </div>
+            </fieldset>
+            <p class="live-name" id="live-name" aria-live="polite">Buttermilk cloud, with butter and maple.</p>
+            <button class="btn" type="submit">Send it to the pass</button>
+            <div class="receipt" id="receipt" hidden>
+              <strong>Order up</strong>
+              <p id="receipt-line"></p>
+            </div>
+          </form>
+          <div class="stage" aria-hidden="true">
+            <div class="mini" id="mini">
+              <div class="glow"></div>
+              <div class="stack">
+                <div class="cake"><i></i><b></b></div>
+                <div class="cake"><i></i><b></b></div>
+                <div class="cake"><i></i><b></b></div>
+                <div class="cake"><i></i><b></b></div>
+                <div class="toppings">
+                  <span class="topping topping-butter"></span>
+                  <span class="topping topping-maple"></span>
+                  <span class="topping topping-berries"></span>
+                  <span class="topping topping-cream"></span>
+                  <span class="topping topping-honey"></span>
+                  <span class="topping topping-salt"></span>
+                </div>
+              </div>
+              <div class="plate"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    </main>
+
+    <div class="wrap">
+      <footer class="site">
+        <div>
+          <strong>Cloudy Pancakes</strong>
+          <p class="signoff">Hello, cloudy pancakes.</p>
+        </div>
+        <p>pancake hafe · cloudy hafe</p>
+      </footer>
+    </div>
+
+    <script>
+      const nav = document.getElementById("nav");
+      const onScroll = () => nav.classList.toggle("scrolled", window.scrollY > 12);
+      onScroll();
+      document.addEventListener("scroll", onScroll, { passive: true });
+
+      const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const hero = document.getElementById("hero-art");
+      const stackWrap = document.getElementById("stack-wrap");
+
+      if (!reduce && window.matchMedia("(pointer: fine)").matches) {
+        hero.addEventListener("pointermove", (event) => {
+          const rect = hero.getBoundingClientRect();
+          const x = (event.clientX - rect.left) / rect.width - 0.5;
+          const y = (event.clientY - rect.top) / rect.height - 0.5;
+          stackWrap.style.transform = `translate(${x * 18}px, ${y * 12}px)`;
+        });
+        hero.addEventListener("pointerleave", () => {
+          stackWrap.style.transform = "";
+        });
+      }
+
+      if (!reduce) {
+        const canvas = document.getElementById("motes");
+        const ctx = canvas.getContext("2d");
+        const motes = Array.from({ length: 36 }, () => ({
+          x: Math.random(),
+          y: Math.random(),
+          r: Math.random() * 1.6 + 0.4,
+          s: Math.random() * 0.15 + 0.04,
+          a: Math.random() * 0.35 + 0.1,
+        }));
+
+        const draw = () => {
+          const { width, height } = hero.getBoundingClientRect();
+          const dpr = Math.min(window.devicePixelRatio || 1, 2);
+          canvas.width = width * dpr;
+          canvas.height = height * dpr;
+          ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+          ctx.clearRect(0, 0, width, height);
+          for (const mote of motes) {
+            mote.y -= mote.s / 180;
+            if (mote.y < 0) mote.y = 1;
+            ctx.beginPath();
+            ctx.fillStyle = `rgba(196, 132, 58, ${mote.a})`;
+            ctx.arc(mote.x * width, mote.y * height, mote.r, 0, Math.PI * 2);
+            ctx.fill();
+          }
+          requestAnimationFrame(draw);
+        };
+        draw();
+      }
+
+      const batterNames = {
+        buttermilk: "Buttermilk cloud",
+        blueberry: "Blue hour stack",
+        chocolate: "Midnight griddle",
+        ricotta: "Sunday ricotta",
+      };
+      const toppingNames = {
+        butter: "butter",
+        maple: "maple",
+        berries: "berries",
+        cream: "cloud cream",
+        honey: "honey",
+        salt: "sea salt",
+      };
+
+      const form = document.getElementById("builder");
+      const live = document.getElementById("live-name");
+      const receipt = document.getElementById("receipt");
+      const receiptLine = document.getElementById("receipt-line");
+      const mini = document.getElementById("mini");
+
+      const describe = () => {
+        const batter = form.batter.value;
+        const toppings = [...form.querySelectorAll('input[type="checkbox"]:checked')].map(
+          (input) => toppingNames[input.value]
+        );
+        if (!toppings.length) return `${batterNames[batter]}, bare and a little brave.`;
+        const list =
+          toppings.length === 1
+            ? toppings[0]
+            : `${toppings.slice(0, -1).join(", ")} and ${toppings.at(-1)}`;
+        return `${batterNames[batter]}, with ${list}.`;
+      };
+
+      const refresh = () => {
+        live.textContent = describe();
+      };
+
+      form.addEventListener("change", () => {
+        refresh();
+        receipt.hidden = true;
+      });
+
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        receiptLine.textContent = `${describe()} On the iron now.`;
+        receipt.hidden = false;
+        mini.classList.remove("served");
+        requestAnimationFrame(() => mini.classList.add("served"));
+      });
+
+      const houseForm = document.getElementById("house-form");
+      const hereFlag = document.getElementById("here-flag");
+      const houseAnnounce = document.getElementById("house-announce");
+      const roomTitles = {
+        doorstep: "At the door",
+        dining: "Dining room",
+        griddle: "The pass",
+        wash: "Washroom",
+      };
+      const roomAnnounce = {
+        doorstep:
+          "At the door. Ramp from the path, no steps. Door wide enough for a wheelchair. Bell at seated height. Threshold flush with the floor.",
+        dining:
+          "Dining room. Clear path between tables. Space to stay in your own chair. Menus in large type, read aloud if you ask.",
+        griddle:
+          "The pass. A lower stretch of counter. The hot iron stays behind it. You can see the pancakes land from a seated height.",
+        wash:
+          "Washroom. Room to turn a chair. Bars beside the toilet. A sink with open space underneath.",
+      };
+
+      houseForm.addEventListener("change", () => {
+        const where = houseForm.where.value;
+        hereFlag.textContent = roomTitles[where];
+        houseAnnounce.textContent = roomAnnounce[where];
+      });
+
+      const rain = document.getElementById("rain");
+      const rainToggle = document.getElementById("rain-toggle");
+
+      if (!reduce) {
+        const kinds = ["cake", "cake", "cloud", "stack"];
+        for (let i = 0; i < 32; i += 1) {
+          const drop = document.createElement("span");
+          drop.className = "drop";
+          const kind = kinds[i % kinds.length];
+          const flake = document.createElement("span");
+          flake.className = "flake";
+          if (kind === "cake") {
+            flake.classList.add("cake-flake");
+            if (i % 3 === 0) flake.classList.add("buttered");
+          } else if (kind === "cloud") {
+            flake.classList.add("cloud-flake");
+          } else {
+            flake.classList.add("stack-flake");
+            flake.append(document.createElement("i"), document.createElement("b"));
+            const puff = document.createElement("span");
+            puff.className = "puff";
+            flake.append(puff);
+          }
+          drop.append(flake);
+          drop.style.left = `${Math.random() * 100}%`;
+          drop.style.animationDuration = `${7 + Math.random() * 9}s`;
+          drop.style.animationDelay = `${-Math.random() * 14}s`;
+          drop.style.setProperty("--drift", `${(Math.random() - 0.5) * 120}px`);
+          drop.style.setProperty("--spin", Math.random() < 0.5 ? "-1" : "1");
+          drop.style.setProperty("--size", (0.55 + Math.random() * 0.7).toFixed(2));
+          rain.append(drop);
+        }
+      }
+
+      rainToggle.addEventListener("click", () => {
+        const paused = rain.classList.toggle("is-paused");
+        rainToggle.setAttribute("aria-pressed", String(!paused));
+        rainToggle.textContent = paused ? "Rain pancakes" : "Pause the rain";
+      });
+    </script>
+  </body>
+</html>
